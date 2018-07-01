@@ -1,0 +1,28 @@
+{  
+   "button":[  
+      {  
+         "x":100,
+         "y":100,
+         "label":"Singleplayer",
+         "enabled":true
+      },
+      {  
+         "x":100,
+         "y":300,
+         "label":"Multiplayer",
+         "enabled":false
+      },
+      {  
+         "x":100,
+         "y":500,
+         "label":"Options",
+         "enabled":true
+      },
+      {  
+         "x":100,
+         "y":700,
+         "label":"Quit Game",
+         "enabled":true
+      }
+   ]
+}
