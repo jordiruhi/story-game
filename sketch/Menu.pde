@@ -1,41 +1,36 @@
 class Menu
 {
-  JSONObject menu;
   JSONArray buttonData;
-  
-  Button b[];
-  String label[];
-  float x[], y[];
-  boolean enabled[];
 
-  Menu(String jsonPath)
+  String jsonPath;
+
+  ArrayList<Button> buttons = new ArrayList<Button>();
+
+  Menu(String tempPath)
   {
-    menu = loadJSONObject(jsonPath);
-    buttonData = menu.getJSONArray("button");
-    
-    Button b[] = new Button[buttonData.size()];
-    float x[] = new float[buttonData.size()];
-    float y[] = new float[buttonData.size()];
-    String label[] = new String[buttonData.size()];
-    boolean enabled[] = new boolean[buttonData.size()];
-    
+    jsonPath = tempPath;
+    buttonData = loadJSONObject(jsonPath).getJSONArray("button");
+
     for (int i = 0; i < buttonData.size(); i++)
     {
+      float x[] = new float[buttonData.size()];
+      float y[] = new float[buttonData.size()];
+      String label[] = new String[buttonData.size()];
+      boolean enabled[] = new boolean[buttonData.size()];
       x[i] = buttonData.getJSONObject(i).getFloat("x");
       y[i] = buttonData.getJSONObject(i).getFloat("y");
       label[i] = buttonData.getJSONObject(i).getString("label");
       enabled[i] = buttonData.getJSONObject(i).getBoolean("enabled");
-      
-      b[i] = new Button(x[i], y[i], 350, 50, label[i]);
-      b[i].enabled = enabled[i];
+      buttons.add(new Button(x[i], y[i], 350, 50, label[i]));
+      buttons.get(i).enabled = enabled[i];
     }
   }
-  
+
   void open()
   {
-    for(int i = 0; i < buttonData.size(); i++)
+    for (int i = 0; i < buttons.size(); i++)
     {
-      b[i].display();
+      buttons.get(i).display();
     }
   }
 }
